@@ -1,0 +1,146 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url(/fonts/Montserrat/Montserrat-Regular.ttf)
+}
+
+@font-face {
+    font-family: Awesome;
+    src: url(/fonts/Awesome/fa-brands-400.ttf);
+}
+
+@font-face {
+    font-family: euro;
+    src: url(/fonts/euro/eurof55.ttf)
+}
+
+@font-face {
+    font-family: lato;
+    src: url(/fonts/lato/Lato-Regular.ttf)
+}
+
+html {
+    font-family: Montserrat;
+
+}
+
+body {
+    margin: 0;
+    color: white;
+
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+}
+
+/* HELPERS */
+
+.flex {
+    display: flex;
+}
+
+.flex.align-items {
+    align-items: center
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+
+/* MAIN HEADER */
+
+.main-header {
+
+    height: 66px;
+    width: 100%;
+    background-color: #ff7f00;
+}
+
+.container {
+    width: 100%;
+    margin: 0 15px;
+}
+
+.main-nav li {
+    margin: 0 15px;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+.logo {
+    color: white;
+}
+
+.clean-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* GALLERY */
+
+.gallery {
+    margin-block-start: 100px;
+    margin-inline-start: 20px;
+    margin-inline-end: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 200px));
+    gap: 10px;
+    grid-template-rows: repeat(auto-fill, minmax(150px, 200px));
+
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* FOOTER */
+
+footer {
+    background-color: #ff7f00;
+    width: 100%;
+    height: 207px;
+    text-align: center;
+
+}
+
+.footer h2 {
+    padding: 25px;
+}
+
+/* EDITOR */
+.editor {
+    display: none;
+    margin: 10px 25px;
+    flex-direction: row;
+    gap: 40px;
+
+}
+
+.canvas {
+    background-color: wheat;
+}
+.tools{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+
+}
+.tools button img{
+    height: 35px;
+    width: 35px;
+}
