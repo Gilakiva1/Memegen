@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,4 +87,87 @@
     <script src="./js/main.js"></script>
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+
+</head>
+
+<body onload="init()">
+    <header class="main-header flex align-items space-between">
+        <section class="container flex space-between ">
+
+            <div class="logo">Memegen</div>
+            <nav>
+                <ul class="main-nav flex clean-list ">
+                    <li><a onclick="exitEditor()" href="#">Gallery</a></li>
+                    <li><a href="#">About</a></li>
+
+                </ul>
+            </nav>
+        </section>
+
+
+    </header>
+
+    <main class="editor">
+        <div class="canvas">
+
+            <canvas height="450" width="450"></canvas>
+        </div>
+        <div class="tools">
+            <input oninput="onChangeTxt(this.value)" class="text" type="text" placeholder="enter text">
+            <div>
+
+                <button onclick="onTransferIdx()"><img src="./ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
+                <button onclick="onAddLine()"><img src="./ICONS/add.png" alt=""></button>
+                <button onclick="onDeleteLine()"><img src="./ICONS/trash.png" alt=""></button>
+
+            </div>
+            <div>
+
+                <button onclick="onChangeSize(1)"><img src="./ICONS/increase font - icon.png" alt=""></button>
+                <button onclick="onChangeSize(-1)"><img src="./ICONS/decrease font - icon.png" alt=""></button>
+                <button onclick="onChangeAlign('left')"><img src="./ICONS/align-to-left.png" alt=""></button>
+                <button onclick="onChangeAlign('center')"><img src="./ICONS/center-text-alignment.png" alt=""></button>
+                <button onclick="onChangeAlign('right')"><img src="./ICONS/align-to-right.png" alt=""></button>
+            </div>
+            <div>
+                <select onclick="onChangeFont(this.value)" name="font" id="">
+                    Awesome Poppins lato euro
+                    <option value='Impact'>Impact</option>
+                    <option value='Awesome'>Awesome</option>
+                    <option value='Poppins'>Poppins</option>
+                    <option value='lato'>lato</option>
+                    <option value='euro'>euro</option>
+                </select>
+
+            </div>
+            <div>
+                <button>Share</button>
+                <button>Share</button>
+            </div>
+        </div>
+
+    </main>
+
+    <section class="gallery"></section>
+
+    <footer class=footer>
+        <h2>Memegen</h2>
+        <h3>all rights reserved 2019</h3>
+
+    </footer>
+    <script src="./js/main.service.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+>>>>>>> ea4fc0a5fb99f0b8b0019512a7db226425e56248
 </html>
