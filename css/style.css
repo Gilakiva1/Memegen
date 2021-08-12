@@ -73,7 +73,7 @@ h3 {
 }
 
 .main-nav a {
-    color: white;
+    color: rgb(255, 255, 255);
     text-decoration: none;
     margin: 0 15px;
 }
@@ -143,4 +143,25 @@ footer {
 .tools button img{
     height: 35px;
     width: 35px;
+}
+.stickers{
+    display: flex;
+    gap:15px;
+    border: 1px solid black ;
+}
+.sticker img{
+    height: 35px;
+    width: 35px;
+}
+
+.meme{
+    display :none;
+    background-color: whitesmoke;
+    margin-block-start: 100px;
+    margin-inline-start: 20px;
+    margin-inline-end: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 200px));
+    gap: 10px;
+    grid-template-rows: repeat(auto-fill, minmax(150px, 200px));
 }

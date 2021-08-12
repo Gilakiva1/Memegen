@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 
 </head>
@@ -18,7 +18,7 @@
             <nav>
                 <ul class="main-nav flex clean-list ">
                     <li><a onclick="exitEditor()" href="#">Gallery</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a onclick="openMeme()" href="#">Meme</a></li>
 
                 </ul>
             </nav>
@@ -29,20 +29,16 @@
 
     <main class="editor">
         <div class="canvas">
-
-            <canvas height="450" width="450"></canvas>
+            <canvas onmouseleave="onUp()" height="450" width="450"></canvas>
         </div>
         <div class="tools">
             <input oninput="onChangeTxt(this.value)" class="text" type="text" placeholder="enter text">
             <div>
-
                 <button onclick="onTransferIdx()"><img src="./ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
                 <button onclick="onAddLine()"><img src="./ICONS/add.png" alt=""></button>
                 <button onclick="onDeleteLine()"><img src="./ICONS/trash.png" alt=""></button>
-
             </div>
             <div>
-
                 <button onclick="onChangeSize(1)"><img src="./ICONS/increase font - icon.png" alt=""></button>
                 <button onclick="onChangeSize(-1)"><img src="./ICONS/decrease font - icon.png" alt=""></button>
                 <button onclick="onChangeAlign('left')"><img src="./ICONS/align-to-left.png" alt=""></button>
@@ -58,24 +54,35 @@
                     <option value='lato'>lato</option>
                     <option value='euro'>euro</option>
                 </select>
+                <input class= "color" oninput="onChangeColor()" type="color" value="#000000">
+                <input class= "border-color" oninput="onChangeBorderColor()" type="color" value="#FFFFFF">
 
             </div>
+            <div class="stickers">
+              
+            </div>
             <div>
-                <button>Share</button>
-                <button>Share</button>
+                <button onclick="shareImg()">Share</button>
+                <button onclick="onDownload()">Download</button>
+                <button onclick="onSaveMeme()">Save</button>
             </div>
         </div>
 
     </main>
 
+
     <section class="gallery"></section>
+    <section class="meme"></section>
 
     <footer class=footer>
         <h2>Memegen</h2>
         <h3>all rights reserved 2019</h3>
 
     </footer>
+    <script src="./js/storge.js"></script>
+    <script src="./js/meme.js"></script>
     <script src="./js/main.service.js"></script>
+    <script src="./js/shere.js"></script>
     <script src="./js/main.js"></script>
 </body>
 

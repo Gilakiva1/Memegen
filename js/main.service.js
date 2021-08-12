@@ -3,51 +3,63 @@
 var gImgs = [];
 var gId = 1;
 var gMeme;;
-
+var gStickers = [];
 _createImgs();
+gId = 1;
+_createStickers();
 
+function getStickers(){
+    return gStickers;
+}
+function changeColor(color) {
+    gMeme.lines[gMeme.selectedLineIdx].color = color;
 
-function changeFont(fontName){
+}
+
+function changeBorderColor(color) {
+    gMeme.lines[gMeme.selectedLineIdx].borderColor = color;
+
+}
+
+function changeFont(fontName) {
     const line = gMeme.lines[gMeme.selectedLineIdx];
     line.font = fontName;
 }
 
-function  deleteLine(){
+function deleteLine() {
     var index = gMeme.selectedLineIdx;
- 
-   
-    gMeme.lines.splice(index,1);
-    if(!gMeme.lines.length){
-        
+
+
+    gMeme.lines.splice(index, 1);
+    if (!gMeme.lines.length) {
+
         addLine();
     }
-    gMeme.selectedLineIdx --;
+    gMeme.selectedLineIdx--;
 }
 
 function addLine() {
     var index = gMeme.lines.length - 1
     if (gMeme.lines.length > 2) {
         var yPx = gMeme.lines[index].y + 50;
-    }
-    else if (gMeme.lines.length === 2){
+    } else if (gMeme.lines.length === 2) {
         yPx = gMeme.lines[0].y + 50;
-    }
-    else if(!gMeme.lines.length){
+    } else if (!gMeme.lines.length) {
         yPx = 10;
-    }
-    else {
+    } else {
         yPx = 400;
     }
     gMeme.lines.push({
-        font:'Impact',
+        font: 'Impact',
         txt: '',
         size: 20,
         align: 'left',
         color: '#fff',
+        borderColor: '#000',
         x: 30,
         y: yPx
     })
-    gMeme.selectedLineIdx ++;
+    gMeme.selectedLineIdx++;
 }
 
 function transferIdx() {
@@ -63,16 +75,21 @@ function setMeme(imgId) {
         selectedImgId: imgId,
         selectedLineIdx: 0,
         lines: [{
-            font:'Impact',
-            txt: 'Never ate falafel',
+            font: 'Impact',
+            txt: '',
             size: 20,
             align: 'left',
             color: '#fff',
+            borderColor: '#000',
             x: 30,
-            y: 10
+            y: 10,
+            widthSize: 0
         }]
     };
+}
 
+function setSavedMeme(meme) {
+    gMeme = meme
 }
 
 function changeAlign(align) {
@@ -93,14 +110,16 @@ function changeAlign(align) {
     }
 }
 
-function setTxt(txt) {
+function setTxt(txt, sizeTxt) {
     const index = gMeme.selectedLineIdx;
     gMeme.lines[index].txt = txt;
+    gMeme.lines[index].widthSize = sizeTxt.width;
 }
 
-function changeSize(num) {
+function changeSize(num, sizeTxt) {
     const index = gMeme.selectedLineIdx;
     gMeme.lines[index].size += num;
+    gMeme.lines[index].widthSize = sizeTxt.width;
 }
 
 function _createImgs() {
@@ -125,11 +144,26 @@ function _createImgs() {
     createImg(gId++, './image/18.jpg', keyWords);
 }
 
+function _createStickers() {
+    createSticker(gId++, './sticker/1.png');
+    createSticker(gId++, './sticker/2.png');
+    createSticker(gId++, './sticker/3.png');
+ 
+}
+
+
 function createImg(id, url, keyWords) {
     gImgs.push({
         id,
         url,
         keyWords
+    })
+}
+
+function createSticker(id, url) {
+    gStickers.push({
+        id,
+        url
     })
 }
 
@@ -143,4 +177,34 @@ function findImg(id) {
 
 function getMeme() {
     return gMeme;
+}
+
+function movePosTxt(dx, dy) {
+    gMeme.lines[gMeme.selectedLineIdx].x += dx
+    gMeme.lines[gMeme.selectedLineIdx].y += dy
+
+}
+
+function isTxtClicked(clickedPos) {
+    var index = gMeme.selectedLineIdx;
+    const pos = {
+        x: getPosMeme(),
+        y: gMeme.lines[index].y
+    }
+    if ((clickedPos.x >= pos.x && clickedPos.x <= pos.x + gMeme.lines[index].widthSize) && (clickedPos.y >= pos.y && clickedPos.y <= pos.y + gMeme.lines[index].size)) return true
+    return false
+}
+
+function getPosMeme() {
+    var meme = getMeme()
+    var line = meme.lines[meme.selectedLineIdx];
+    if (line.align === 'left') {
+        return line.x
+
+    } else if (line.align === 'right') {
+        return line.x - line.widthSize
+    } else {
+        return line.x - line.widthSize / 2
+    }
+
 }
