@@ -8,36 +8,6 @@ _createImgs();
 gId = 1;
 _createStickers();
 
-function getStickers(){
-    return gStickers;
-}
-function changeColor(color) {
-    gMeme.lines[gMeme.selectedLineIdx].color = color;
-
-}
-
-function changeBorderColor(color) {
-    gMeme.lines[gMeme.selectedLineIdx].borderColor = color;
-
-}
-
-function changeFont(fontName) {
-    const line = gMeme.lines[gMeme.selectedLineIdx];
-    line.font = fontName;
-}
-
-function deleteLine() {
-    var index = gMeme.selectedLineIdx;
-
-
-    gMeme.lines.splice(index, 1);
-    if (!gMeme.lines.length) {
-
-        addLine();
-    }
-    gMeme.selectedLineIdx--;
-}
-
 function addLine() {
     var index = gMeme.lines.length - 1
     if (gMeme.lines.length > 2) {
@@ -62,14 +32,6 @@ function addLine() {
     gMeme.selectedLineIdx++;
 }
 
-function transferIdx() {
-    if (gMeme.lines.length - 1 === gMeme.selectedLineIdx) {
-        gMeme.selectedLineIdx = 0
-    } else {
-        gMeme.selectedLineIdx++;
-    }
-}
-
 function setMeme(imgId) {
     gMeme = {
         selectedImgId: imgId,
@@ -86,40 +48,6 @@ function setMeme(imgId) {
             widthSize: 0
         }]
     };
-}
-
-function setSavedMeme(meme) {
-    gMeme = meme
-}
-
-function changeAlign(align) {
-    const line = gMeme.lines[gMeme.selectedLineIdx]
-    line.align = align
-    if (align === 'left') {
-        line.x = 30
-        // line.y = 10
-
-    } else if (align === 'center') {
-        line.x = gCanvas.width / 2
-        // line.y = 10
-
-
-    } else {
-        line.x = gCanvas.width - 10
-        // line.y = 10
-    }
-}
-
-function setTxt(txt, sizeTxt) {
-    const index = gMeme.selectedLineIdx;
-    gMeme.lines[index].txt = txt;
-    gMeme.lines[index].widthSize = sizeTxt.width;
-}
-
-function changeSize(num, sizeTxt) {
-    const index = gMeme.selectedLineIdx;
-    gMeme.lines[index].size += num;
-    gMeme.lines[index].widthSize = sizeTxt.width;
 }
 
 function _createImgs() {
@@ -148,9 +76,38 @@ function _createStickers() {
     createSticker(gId++, './sticker/1.png');
     createSticker(gId++, './sticker/2.png');
     createSticker(gId++, './sticker/3.png');
- 
 }
 
+function getStickers(){
+    return gStickers;
+}
+function changeColor(color) {
+    gMeme.lines[gMeme.selectedLineIdx].color = color;
+}
+
+function changeBorderColor(color) {
+    gMeme.lines[gMeme.selectedLineIdx].borderColor = color;
+}
+
+function changeFont(fontName) {
+    const line = gMeme.lines[gMeme.selectedLineIdx];
+    line.font = fontName;
+}
+
+function deleteLine() {
+    var index = gMeme.selectedLineIdx;
+    gMeme.lines.splice(index, 1);
+    if (!gMeme.lines.length) addLine();
+    gMeme.selectedLineIdx--;
+}
+
+function changeAlign(align) {
+    const line = gMeme.lines[gMeme.selectedLineIdx]
+    line.align = align
+    if (align === 'left')  line.x = 30
+    else if (align === 'center') line.x = gCanvas.width / 2
+    else line.x = gCanvas.width - 10
+}
 
 function createImg(id, url, keyWords) {
     gImgs.push({
@@ -160,30 +117,6 @@ function createImg(id, url, keyWords) {
     })
 }
 
-function createSticker(id, url) {
-    gStickers.push({
-        id,
-        url
-    })
-}
-
-function getImgs() {
-    return gImgs;
-}
-
-function findImg(id) {
-    return gImgs.find(img => img.id === id);
-}
-
-function getMeme() {
-    return gMeme;
-}
-
-function movePosTxt(dx, dy) {
-    gMeme.lines[gMeme.selectedLineIdx].x += dx
-    gMeme.lines[gMeme.selectedLineIdx].y += dy
-
-}
 
 function isTxtClicked(clickedPos) {
     var index = gMeme.selectedLineIdx;
@@ -206,5 +139,49 @@ function getPosMeme() {
     } else {
         return line.x - line.widthSize / 2
     }
+}
 
+function createSticker(id, url) {
+    gStickers.push({
+        id,
+        url
+    })
+}
+
+function transferIdx() {
+    if (gMeme.lines.length - 1 === gMeme.selectedLineIdx) gMeme.selectedLineIdx = 0
+    else gMeme.selectedLineIdx++;
+}
+
+function setTxt(txt, sizeTxt) {
+    const index = gMeme.selectedLineIdx;
+    gMeme.lines[index].txt = txt;
+    gMeme.lines[index].widthSize = sizeTxt.width;
+}
+
+function changeSize(num, sizeTxt) {
+    const index = gMeme.selectedLineIdx;
+    gMeme.lines[index].size += num;
+    gMeme.lines[index].widthSize = sizeTxt.width;
+}
+
+function movePosTxt(dx, dy) {
+    gMeme.lines[gMeme.selectedLineIdx].x += dx
+    gMeme.lines[gMeme.selectedLineIdx].y += dy
+}
+
+function setSavedMeme(meme) {
+    gMeme = meme
+}
+
+function getImgs() {
+    return gImgs;
+}
+
+function findImg(id) {
+    return gImgs.find(img => img.id === id);
+}
+
+function getMeme() {
+    return gMeme;
 }

@@ -4,6 +4,7 @@ function openMeme() {
     document.querySelector('.gallery').style.display = 'none';
     document.querySelector('.editor').style.display = 'none';
     document.querySelector('.meme').style.display = 'grid';
+    document.querySelector('.contact').style.display = 'none';
     renderMemeImg()
 }
 
@@ -28,13 +29,13 @@ function renderMemeImg() {
 
 
 function onEditorSaved(idx) {
-    console.log(idx);
     var savedMemes = loadFromStorage('meme');
     document.querySelector('.gallery').style.display = 'none';
     document.querySelector('.editor').style.display = 'flex';
     document.querySelector('.meme').style.display = 'none';
-    setSavedMeme(savedMemes[idx].meme)
-    renderCanvas()
+    document.querySelector('.contact').style.display = 'none';
+    setSavedMeme(savedMemes[idx].meme);
+    renderCanvas();
 }
 
 function _saveMemeToStorage() {
