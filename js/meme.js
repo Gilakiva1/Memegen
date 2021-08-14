@@ -35,6 +35,7 @@ function onEditorSaved(idx) {
     document.querySelector('.meme').style.display = 'none';
     document.querySelector('.contact').style.display = 'none';
     setSavedMeme(savedMemes[idx].meme);
+    drewCanvas()
     renderCanvas();
 }
 
